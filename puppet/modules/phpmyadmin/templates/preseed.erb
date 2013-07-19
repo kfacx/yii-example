@@ -1,0 +1,41 @@
+phpmyadmin      phpmyadmin/app-password-confirm password <%= @db_root_pw %>
+phpmyadmin      phpmyadmin/mysql/admin-pass     password <%= @db_root_pw %>
+phpmyadmin      phpmyadmin/password-confirm     password <%= @db_root_pw %>
+phpmyadmin      phpmyadmin/setup-password       password <%= @db_root_pw %>
+# MySQL application password for phpmyadmin:
+phpmyadmin      phpmyadmin/mysql/app-pass       password <%= @db_root_pw %>
+phpmyadmin      phpmyadmin/remove-error select  abort
+# Database type to be used by phpmyadmin:
+phpmyadmin      phpmyadmin/database-type        select  mysql
+phpmyadmin      phpmyadmin/internal/skip-preseed        boolean false
+phpmyadmin      phpmyadmin/remote/port  string
+# Perform upgrade on database for phpmyadmin with dbconfig-common?
+phpmyadmin      phpmyadmin/dbconfig-upgrade     boolean true
+phpmyadmin      phpmyadmin/internal/reconfiguring       boolean false
+# Do you want to back up the database for phpmyadmin before upgrading?
+phpmyadmin      phpmyadmin/upgrade-backup       boolean true
+phpmyadmin      phpmyadmin/missing-db-package-error     select  abort
+phpmyadmin      phpmyadmin/setup-username       string  admin
+# Deconfigure database for phpmyadmin with dbconfig-common?
+phpmyadmin      phpmyadmin/dbconfig-remove      boolean
+phpmyadmin      phpmyadmin/passwords-do-not-match       error
+# MySQL username for phpmyadmin:
+phpmyadmin      phpmyadmin/db/app-user  string  phpmyadmin
+# Connection method for MySQL database of phpmyadmin:
+phpmyadmin      phpmyadmin/mysql/method select  unix socket
+phpmyadmin      phpmyadmin/mysql/admin-user     string  root
+# Do you want to purge the database for phpmyadmin?
+phpmyadmin      phpmyadmin/purge        boolean false
+phpmyadmin      phpmyadmin/install-error        select  abort
+phpmyadmin      phpmyadmin/reconfigure-webserver        multiselect     apache2
+# Host running the MySQL server for phpmyadmin:
+phpmyadmin      phpmyadmin/remote/newhost       string
+# Host name of the MySQL database server for phpmyadmin:
+phpmyadmin      phpmyadmin/remote/host  select
+phpmyadmin      phpmyadmin/upgrade-error        select  abort
+# Reinstall database for phpmyadmin?
+phpmyadmin      phpmyadmin/dbconfig-reinstall   boolean false
+# Configure database for phpmyadmin with dbconfig-common?
+phpmyadmin      phpmyadmin/dbconfig-install     boolean true
+# MySQL database name for phpmyadmin:
+phpmyadmin      phpmyadmin/db/dbname    string  phpmyadmin

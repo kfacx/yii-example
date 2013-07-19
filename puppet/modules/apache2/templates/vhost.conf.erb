@@ -1,0 +1,29 @@
+<VirtualHost *:80>
+        ServerAdmin <%= @email %>
+        ServerName <%= @server_name %>
+<% if @server_alias -%>
+	ServerAlias <%= @server_alias %>
+<% end %>
+
+        DocumentRoot <%= @document_root %>
+        ServerPath <%= @document_root %>
+
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+
+        <Directory <%= @document_root %>>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride FileInfo
+                Order allow,deny
+                allow from all
+        </Directory>
+
+        ErrorLog <%= @error_log %>
+        LogLevel warn
+
+        CustomLog <%= @custom_log %> combined
+        ServerSignature On
+
+</VirtualHost>

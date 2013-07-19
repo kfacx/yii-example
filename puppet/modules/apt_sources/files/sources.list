@@ -1,0 +1,5 @@
+deb http://ftp.utexas.edu/debian/ wheezy main non-free contrib
+deb-src http://ftp.utexas.edu/debian/ wheezy main non-free contrib
+
+deb http://security.debian.org/ wheezy/updates main
+deb-src http://security.debian.org/ wheezy/updates main

@@ -1,0 +1,5 @@
+*~
+.vagrant
+example/protected/runtime/
+example/assets/
+example/reports/

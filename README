@@ -23,7 +23,9 @@ aspects of Yii as possible. Some of the examples will cover:
 
 Requirements:
 
-	A working install of Vagrant
+	A working install of Vagrant (http://www.vagrantup.com/)
+
+	Capistrano (http://www.capistranorb.com/)
 
 	A computer with at least 2GB of ram
 

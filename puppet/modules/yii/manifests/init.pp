@@ -93,13 +93,21 @@ class yii ($db_root_pw) {
       db_root_pw => $db_root_pw,
       db_name => "yii-example",
       project => "yii-example";
+    "create yii example test-db":
+      db_root_pw => $db_root_pw,
+      db_name => "yii-example-test",
+      project => "yii-example";
   }
-
   mysql::grant {
     "grant yii example db user":
       db_root_pw => $db_root_pw,
       db_name => "yii-example",
       project => "yii-example",
       db_user => "yii-example";
+    "grant yii example test-db user":
+      db_root_pw => $db_root_pw,
+      db_name => "yii-example-test",
+      project => "yii-example",
+      db_user => "yii-example-test";
   }
 }

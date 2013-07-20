@@ -12,6 +12,13 @@ return CMap::mergeArray(
 				'connectionString'=>'DSN for test database',
 			),
 			*/
+			'db'=>array(
+				'connectionString' => 'mysql:host=localhost;dbname=yii-example-test',
+				'emulatePrepare' => true,
+				'username' => 'yii-example-test',
+				'password' => 'yii-example-test',
+				'charset' => 'utf8',
+			),
 		),
 	)
 );

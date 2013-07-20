@@ -1,0 +1,27 @@
+	The primary purpose of this project is to provide a complete working
+example of Yii's components. Because there are many aspects of Yii providing
+a clear and explicit code is the biggest concern. This file is intended to
+provide the basic guidlines for creating examples to be included in this
+project. However, these guidlines are subject to change as more features are
+added so please review them before submitting a pull request.
+
+	One controller per example.
+
+	Model names should include the controller name that uses them.
+
+		For example if the controller is BlogController, the models
+		should be BlogPost, BlogUser, BlogCommand etc.
+
+	Database tables should include the controller name that uses them.
+	(same as the above example but _'s are acceptable for seperation).
+
+		For example if the controller is BlogController, the table
+		names shoule be blog_post, blog_user, blog_command.
+
+	No short variable names unless its obvious what the variable is used
+	for (subject to interpretation, if in doubt, be explicit).
+
+		For example: for ($i; $i < $someValue; $i++) $i here is
+		accaptable.  However, in $m=new MyModel; $m here is not.
+
+	

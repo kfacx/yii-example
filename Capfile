@@ -28,6 +28,6 @@ namespace :deploy do
 
 	desc "Ensures that the app user can log in using ssh keys after running deploy:setup"
 	task :unbreak_ssh do
-		run "chmod 744 #{deploy_to}"
+		run "chmod 755 #{deploy_to}"
 	end
 end

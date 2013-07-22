@@ -13,6 +13,7 @@ namespace :deploy do
 		run "chmod 775 -R #{asset_folder}"
 		run "mkdir -p #{runtime_folder}" unless File.exists?(runtime_folder)
 		run "chmod 775 -R #{runtime_folder}"
+		run "chmod g-w #{deploy_to}"
 	end
 
 	desc "Runs the unit tests after deployment."

@@ -32,7 +32,7 @@ class BasicForm extends CFormModel {
 			//   attribute_safe
 			// CRequiredValidator
 			array (
-				'attribute_boolean, attribute_number, attribute_range, attribute_regex, attribute_string',
+				'attribute_number, attribute_range, attribute_regex, attribute_string',
 				'required',
 				'on' => 'scenario_default',
 			),

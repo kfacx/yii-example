@@ -25,7 +25,6 @@ class BasicFormTest extends CTestCase {
 				'expects' => array (
 					'validation_results' => false,
 					'errors' => array (
-						'attribute_boolean' => array ('Boolean (True or False) cannot be blank.'),
 						'attribute_number' => array ('Number (1 to 10) cannot be blank.'),
 						'attribute_range' => array ('Range (1,3,5,7,9) cannot be blank.'),
 						'attribute_regex' => array ('Regular expression (word space number) cannot be blank.'),

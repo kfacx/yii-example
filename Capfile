@@ -1,6 +1,8 @@
 load 'deploy'
 load 'config/deploy'
 
+after "deploy:setup", "deploy:unbreak_ssh"
+
 after "deploy:finalize_update", "deploy:cleanup_runtime"
 after "deploy:cleanup_runtime", "deploy:run_unit_tests"
 
@@ -22,5 +24,10 @@ namespace :deploy do
 		else
 			cd #{current_release}/example/protected/tests;
 		fi && phpunit ./unit/"
+	end
+
+	desc "Ensures that the app user can log in using ssh keys after running deploy:setup"
+	task :unbreak_ssh do
+		run "chmod 755 #{deploy_to}"
 	end
 end

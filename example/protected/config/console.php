@@ -24,6 +24,14 @@ return array(
 			'password' => 'yii-example',
 			'charset' => 'utf8',
 		),
+		'testDb'=>array(
+			'class' => 'CDbConnection',
+			'connectionString' => 'mysql:host=localhost;dbname=yii-example-test',
+			'emulatePrepare' => true,
+			'username' => 'yii-example-test',
+			'password' => 'yii-example-test',
+			'charset' => 'utf8',
+		),
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(

@@ -40,26 +40,31 @@ Recomended:
 
 Install:
 
+	These install steps assume the host system is unix based (Linux, Mac
+OSX, *BSD, etc.).
+
 	You will need to add the following line to your local /etc/hosts
 
 	192.168.42.101 yii-example.local.domain yii-example yii-demo-blog yii-demo-hangman yii-demo-helloworld yii-demo-phonebook
 
-	Run the following:
+	Then run the following commands:
 
-		git clone http://github.com/kfacx/yii-example.git
+		git clone https://github.com/kfacx/yii-example.git
 
 		cd yii-example
 
 		vagrant up
+
+		chmod 0600 vagrant_insecure_key
 
 		cap deploy:setup
 
 		cap deploy
 
 	The 'vagrant up' can take a long time to finish. If you have a slow
-internet connection it can take hours to download.
+internet connection it can take hours to download the base box.
 
-	Once complete the sites can be tested with the following urls:
+	Once complete, the sites can be tested with the following urls:
 
 	http://yii-example/
 	http://yii-demo-blog/

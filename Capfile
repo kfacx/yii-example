@@ -4,7 +4,9 @@ load 'config/deploy'
 after "deploy:setup", "deploy:unbreak_ssh"
 
 after "deploy:finalize_update", "deploy:cleanup_runtime"
-after "deploy:cleanup_runtime", "deploy:run_unit_tests"
+after "deploy:cleanup_runtime", "deploy:migrate_test_db"
+after "deploy:migrate_test_db", "deploy:run_unit_tests"
+after "deploy:run_unit_tests", "deploy:migrate_db"
 
 namespace :deploy do
 	desc "Corrects the asset and runtime folder permissions."
@@ -29,5 +31,15 @@ namespace :deploy do
 	desc "Ensures that the app user can log in using ssh keys after running deploy:setup"
 	task :unbreak_ssh do
 		run "chmod 755 #{deploy_to}"
+	end
+
+	desc "Applies the migrations to the test db"
+	task :migrate_test_db do
+		run "cd #{release_path}/example/protected && ./yiic migrate --interactive=0 --connectionID=testDb"
+	end
+
+	desc "Applies the migrations to the production db"
+	task :migrate_db do
+		run "cd #{release_path}/example/protected && ./yiic migrate --interactive=0"
 	end
 end

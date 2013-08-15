@@ -273,7 +273,7 @@ class RelationsActiveRecord extends CActiveRecord {
 							$this->_insert_commands[]=array (
 								'table' => $this->metaData->relations[$relation_name]->getJunctionTableName(),
 								'columns' => array (
-									$relation_key_column => function () use ($this_var, $primary_key) { return $this->$primary_key; },
+									$relation_key_column => function () use ($this_var, $primary_key) { return $this_var->$primary_key; },
 									$remote_key_column => $id,
 								),
 							);

@@ -28,6 +28,17 @@ namespace :deploy do
 		fi && phpunit ./unit/"
 	end
 
+	desc "Runs the unit tests after deployment."
+	task :run_unit_tests_with_coverage do
+		run "if [ -e #{release_path} ]; then
+			cd #{release_path}/example/protected/tests;
+			mkdir -p #{release_path}/example/reports/;
+		else
+			cd #{current_release}/example/protected/tests;
+			mkdir -p #{current_release}/example/reports/;
+		fi && phpunit --coverage-html ../../reports/ ./unit/"
+	end
+
 	desc "Ensures that the app user can log in using ssh keys after running deploy:setup"
 	task :unbreak_ssh do
 		run "chmod 755 #{deploy_to}"

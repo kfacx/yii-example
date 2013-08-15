@@ -10,4 +10,13 @@
 		<browser name="Firefox" browser="*firefox" />
 	</selenium>-->
 
+	<filter>
+		<blacklist>
+			<directory suffix=".php">/var/www/yii/</directory>
+			<directory suffix=".php">./</directory>
+			<directory suffix=".php">/usr/share/php/</directory>
+			<directory suffix=".php">../vendors/</directory>
+		</blacklist>
+	</filter>
+
 </phpunit>

@@ -1,3 +1,7 @@
+#
+# Copyright (c) 2013 by Alexander Scott
+# All rights reserved.
+#
 class apache2 {
   package {
     "apache2":

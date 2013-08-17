@@ -1,3 +1,8 @@
+#
+# Copyright (c) 2013 by Alexander Scott
+# All rights reserved.
+#
+
 $db_root_pw = 'example-db-password'
 
 stage { 'first': before => Stage['main'] }

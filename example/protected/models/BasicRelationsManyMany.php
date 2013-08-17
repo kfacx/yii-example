@@ -1,4 +1,12 @@
 <?php
+/**
+ * BasicRelationsManyMany class file.
+ *
+ * @author Alexander Scott <magister@kfa.cx>
+ * @link https://github.com/kfacx/yii-example
+ * @copyright Copyright &copy; 2013 Alexander Scott
+ * @license https://github.com/kfacx/yii-example/blob/master/LICENSE
+ */
 
 /**
  * This is the model class for table "tbl_basic_relations_many_many".

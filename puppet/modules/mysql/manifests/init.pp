@@ -1,3 +1,7 @@
+#
+# Copyright (c) 2013 by Alexander Scott
+# All rights reserved.
+#
 class mysql ($db_root_pw) {
   package {
     "mysql-server":

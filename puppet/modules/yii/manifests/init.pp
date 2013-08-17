@@ -1,3 +1,7 @@
+#
+# Copyright (c) 2013 by Alexander Scott
+# All rights reserved.
+#
 class yii ($db_root_pw) {
   include apache2
   include php

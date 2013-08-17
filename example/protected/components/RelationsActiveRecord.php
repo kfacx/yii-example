@@ -222,10 +222,6 @@ class RelationsActiveRecord extends CActiveRecord {
 								}
 							}
 							$this->$relation_name=$model_list;
-// This behavior may not be desirable
-//						} else {
-//							$delete_models=$this->$relation_name;
-//							$this->$relation_name=array ();
 						}
 						// Delete left over models.
 						if (!empty ($delete_models)) {
@@ -470,11 +466,14 @@ class RelationsActiveRecord extends CActiveRecord {
 				continue;
 			switch ($relation_settings[0]) {
 				case 'CHasOneRelation':
+					$this->$relation_name->cascade(true);
 					$this->$relation_name->delete();
 					break;
 				case 'CHasManyRelation':
-					foreach ($this->$relation_name as $relation_entry)
+					foreach ($this->$relation_name as $relation_entry) {
+						$relation_entry->cascade(true);
 						$relation_entry->delete();
+					}
 					break;
 				case 'CManyManyRelation':
 					$primary_key=$this->tableSchema->primaryKey;

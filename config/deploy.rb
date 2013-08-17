@@ -1,3 +1,7 @@
+#
+# Copyright (c) 2013 by Alexander Scott
+# All rights reserved.
+#
 set :application, "yii-example"
 set :scm, :none
 set :repository, "."

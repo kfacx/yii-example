@@ -5,11 +5,9 @@
 <?php $this->widget('zii.widgets.CDetailView',array(
 	'data'=>$basic_relations_main_model,
 	'attributes'=>array(
-//		'magic_attribute_belongs_to_content', // Magic attribute style
-		'relation_belongs_to.column_belongs_to_content', // relation aware style.
-		'column_main_content', // Actual column in the basic_relations_main table.
-//		'magic_attribute_has_one', // magic attribute style
-		'relation_has_one.column_has_one_content', // relation aware style.
+		'relation_belongs_to.column_belongs_to_content',
+		'column_main_content',
+		'relation_has_one.column_has_one_content',
 		// Since the CDetailView does not support array data the Has Many and
 		// Many Many relations need to be pre-process into a string.
 		array (

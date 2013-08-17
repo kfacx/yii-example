@@ -47,33 +47,29 @@
 			true,
 			false
 		);
-/*
-	<div class="row">
-		<?php echo $form->labelEx($basic_relations_main_model->relation_has_one,'column_has_one_content'); ?>
-		<?php echo $form->textField($basic_relations_main_model->relation_has_one,'column_has_one_content'); ?>
-		<?php echo $form->error($basic_relations_main_model->relation_has_one,'column_has_one_content'); ?>
-	</div>
-*/
-
  ?>
 
 
-	<div class="row">
+	<div class="row" id="has_many_box">
 		<label>Has Many</label>
 		<div style="border: 1px solid #bbb; padding: 5px;">
 			<?php
 				if (!empty ($basic_relations_main_model->relation_has_many)) {
 					foreach ($basic_relations_main_model->relation_has_many as $i => $basic_relations_has_many_model) {
-						echo "<div class=\"row\">\n";
-						if (isset ($basic_relations_has_many_model->id))
-							echo $form->hiddenField($basic_relations_has_many_model,'['.$i.']id');
-						echo $form->labelEx($basic_relations_has_many_model,'['.$i.']column_has_many_content')."\n";
-						echo $form->textField($basic_relations_has_many_model,'['.$i.']column_has_many_content')."\n";
-						echo $form->error($basic_relations_has_many_model,'['.$i.']column_has_many_content')."\n";
-						echo "</div>\n";
+						echo $this->renderPartial ('has_many/create_update_row', array (
+							'basic_relations_has_many_model' => $basic_relations_has_many_model,
+							'iteration' => $i,
+						), true, false);
 					}
+				} else {
+					echo "None";
 				}
 			?>
+			<div id="new_has_many">
+				[ <?php echo CHtml::ajaxLink ('+', array ('basicrelations/hasmanycreate'), array (
+					'success' => 'js:function(data){$(\'#new_has_many\').before(data);}'
+				)); ?> ]
+			</div>
 		</div>
 	</div>
 
@@ -81,30 +77,16 @@
 		<label>Many Many</label>
 		<div style="border: 1px solid #bbb; padding: 5px;">
 			<?php
-//				if (!empty ($basic_relations_main_model->relation_many_many)) {
-					echo CHtml::activeListBox(
-						$basic_relations_main_model,
-						'magic_attribute_many_many_selected',
-						CHtml::listData (
-							BasicRelationsManyMany::model()->findAll(),
-							'id',
-							'column_many_many_content'
-						),
-						array ('multiple' => 'multiple')
-					);
-/*
-					foreach ($basic_relations_main_model->relation_many_many as $i => $basic_relations_many_many_model) {
-						echo "<div class=\"row\">\n";
-						echo $basic_relations_many_many_model->id;
-//						if (isset ($basic_relations_many_many_model->id))
-//							echo $form->hiddenField($basic_relations_many_many_model,'['.$i.']id');
-//						echo $form->labelEx($basic_relations_many_many_model,'['.$i.']column_many_many_content')."\n";
-//						echo $form->textField($basic_relations_many_many_model,'['.$i.']column_many_many_content')."\n";
-//						echo $form->error($basic_relations_many_many_model,'['.$i.']column_many_many_content')."\n";
-						echo "</div>\n";
-					}
-*/
-//				}
+				echo CHtml::activeListBox(
+					$basic_relations_main_model,
+					'magic_attribute_many_many_selected',
+					CHtml::listData (
+						BasicRelationsManyMany::model()->findAll(),
+						'id',
+						'column_many_many_content'
+					),
+					array ('multiple' => 'multiple')
+				);
 			?>
 		</div>
 	</div>

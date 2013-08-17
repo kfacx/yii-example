@@ -41,7 +41,7 @@ class BasicrelationsController extends Controller {
 		$this->render('index', $view_vars);
 	}
 
-	/**
+	/****************************************************************************
 	 * Main Section
 	 */
 
@@ -126,14 +126,18 @@ class BasicrelationsController extends Controller {
 		$this->breadcrumbs[]='Delete';
 
 		if (isset ($_POST['confirmed'])) {
+			$basic_relations_main_model->cascade(true);
 			if ($basic_relations_main_model->delete ())
 				$this->redirect (array ('basicrelations/mainindex'));
 		}
 
-		$this->render('main/delete', array('basic_relations_main_model' => $basic_relations_main_model));
+		$this->render('delete', array(
+			'model' => $basic_relations_main_model,
+			'class_name' => 'BasicRelationsMain',
+		));
 	}
 
-	/**
+	/****************************************************************************
 	 * Belongs To Section
 	 */
 
@@ -165,7 +169,71 @@ class BasicrelationsController extends Controller {
 		$this->render('belongs_to/view', array('basic_relations_belongs_to_model' => $basic_relations_belongs_to_model));
 	}
 
-	/**
+	public function actionBelongstocreate () {
+		$this->breadcrumbs=array(
+			'Basic Relations' => array('basicrelations/index'),
+			'Belongs To' => array('basicrelations/belongstoindex'),
+			'Create',
+		);
+
+		$basic_relations_belongs_to_model=new BasicRelationsBelongsTo;
+		if (isset ($_POST['BasicRelationsBelongsTo'])) {
+			$basic_relations_belongs_to_model->attributes=$_POST['BasicRelationsBelongsTo'];
+			if ($basic_relations_belongs_to_model->save ())
+				$this->redirect (array ('basicrelations/belongstoview', 'id' => $basic_relations_belongs_to_model->id));
+		}
+
+		$this->render('belongs_to/create_update', array('basic_relations_belongs_to_model' => $basic_relations_belongs_to_model));
+	}
+
+	public function actionBelongstoupdate ($id) {
+		$this->breadcrumbs=array(
+			'Basic Relations' => array('basicrelations/index'),
+			'Belongs To' => array('basicrelations/belongstoindex'),
+		);
+
+		$basic_relations_belongs_to_model=BasicRelationsBelongsTo::model()->findByPk ($id);
+		if (!$basic_relations_belongs_to_model)
+			throw new CHttpException (404, "Update: Unable to find the ID {$id} for BasicRelationsBelongsTo");
+
+		$this->breadcrumbs[$id]=array ('basicrelations/belongstoview', 'id' => $id);
+		$this->breadcrumbs[]='Update';
+
+		if (isset ($_POST['BasicRelationsBelongsTo'])) {
+			$basic_relations_belongs_to_model->attributes=$_POST['BasicRelationsBelongsTo'];
+			if ($basic_relations_belongs_to_model->save ())
+				$this->redirect (array ('basicrelations/belongstoview', 'id' => $basic_relations_belongs_to_model->id));
+		}
+
+		$this->render('belongs_to/create_update', array('basic_relations_belongs_to_model' => $basic_relations_belongs_to_model));
+	}
+
+	public function actionBelongstodelete ($id) {
+		$this->breadcrumbs=array(
+			'Basic Relations' => array('basicrelations/index'),
+			'Belongs To' => array('basicrelations/belongstoindex'),
+		);
+
+		$basic_relations_belongs_to_model=BasicRelationsBelongsTo::model()->findByPk ($id);
+		if (!$basic_relations_belongs_to_model)
+			throw new CHttpException (404, "Delete: Unable to find the ID {$id} for BasicRelationsBelongsTo");
+
+		$this->breadcrumbs[$id]=array ('basicrelations/belongstoview', 'id' => $id);
+		$this->breadcrumbs[]='Delete';
+
+		if (isset ($_POST['confirmed'])) {
+			$basic_relations_belongs_to_model->cascade(true);
+			if ($basic_relations_belongs_to_model->delete ())
+				$this->redirect (array ('basicrelations/belongstoindex'));
+		}
+
+		$this->render('delete', array(
+			'model' => $basic_relations_belongs_to_model,
+			'class_name' => 'BasicRelationsBelongsTo',
+		));
+	}
+
+	/****************************************************************************
 	 * Has One Section
 	 */
 
@@ -197,7 +265,7 @@ class BasicrelationsController extends Controller {
 		$this->render('has_one/view', array('basic_relations_has_one_model' => $basic_relations_has_one_model));
 	}
 
-	/**
+	/****************************************************************************
 	 * Has Many Section
 	 */
 
@@ -229,7 +297,26 @@ class BasicrelationsController extends Controller {
 		$this->render('has_many/view', array('basic_relations_has_many_model' => $basic_relations_has_many_model));
 	}
 
-	/**
+	public function actionHasmanycreate() {
+		$this->breadcrumbs=array(
+			'Basic Relations' => array('basicrelations/index'),
+			'Has Many' => array('basicrelations/hasmanyindex'),
+			'Create',
+		);
+
+		$basic_relations_has_many_model=new BasicRelationsHasMany;
+
+		if (Yii::app()->request->isAjaxRequest) {
+			$this->renderPartial('has_many/create_update_row', array(
+				'basic_relations_has_many_model' => $basic_relations_has_many_model,
+				'iteration' => '',
+			));
+		} else {
+			$this->render('has_many/create_update', array('basic_relations_has_many_model' => $basic_relations_has_many_model));
+		}
+	}
+
+	/****************************************************************************
 	 * Pivot Section
 	 */
 	public function actionPivotindex() {
@@ -260,7 +347,7 @@ class BasicrelationsController extends Controller {
 		$this->render('pivot/view', array('basic_relations_pivot_model' => $basic_relations_pivot_model));
 	}
 
-	/**
+	/****************************************************************************
 	 * Many Many Section
 	 */
 
@@ -290,6 +377,70 @@ class BasicrelationsController extends Controller {
 		$this->breadcrumbs[]=$basic_relations_many_many_model->id;
 
 		$this->render('many_many/view', array('basic_relations_many_many_model' => $basic_relations_many_many_model));
+	}
+
+	public function actionManymanycreate () {
+		$this->breadcrumbs=array(
+			'Basic Relations' => array('basicrelations/index'),
+			'Many Many' => array('basicrelations/manymanyindex'),
+			'Create',
+		);
+
+		$basic_relations_many_many_model=new BasicRelationsManyMany;
+		if (isset ($_POST['BasicRelationsManyMany'])) {
+			$basic_relations_many_many_model->attributes=$_POST['BasicRelationsManyMany'];
+			if ($basic_relations_many_many_model->save ())
+				$this->redirect (array ('basicrelations/manymanyview', 'id' => $basic_relations_many_many_model->id));
+		}
+
+		$this->render('many_many/create_update', array('basic_relations_many_many_model' => $basic_relations_many_many_model));
+	}
+
+	public function actionManymanyupdate ($id) {
+		$this->breadcrumbs=array(
+			'Basic Relations' => array('basicrelations/index'),
+			'Many Many' => array('basicrelations/manymanyindex'),
+		);
+
+		$basic_relations_many_many_model=BasicRelationsManyMany::model()->findByPk ($id);
+		if (!$basic_relations_many_many_model)
+			throw new CHttpException (404, "Update: Unable to find the ID {$id} for BasicRelationsManyMany");
+
+		$this->breadcrumbs[$id]=array ('basicrelations/manymanyview', 'id' => $id);
+		$this->breadcrumbs[]='Update';
+
+		if (isset ($_POST['BasicRelationsManyMany'])) {
+			$basic_relations_many_many_model->attributes=$_POST['BasicRelationsManyMany'];
+			if ($basic_relations_many_many_model->save ())
+				$this->redirect (array ('basicrelations/manymanyview', 'id' => $basic_relations_many_many_model->id));
+		}
+
+		$this->render('many_many/create_update', array('basic_relations_many_many_model' => $basic_relations_many_many_model));
+	}
+
+	public function actionManymanydelete ($id) {
+		$this->breadcrumbs=array(
+			'Basic Relations' => array('basicrelations/index'),
+			'Many Many' => array('basicrelations/manymanyindex'),
+		);
+
+		$basic_relations_many_many_model=BasicRelationsManyMany::model()->findByPk ($id);
+		if (!$basic_relations_many_many_model)
+			throw new CHttpException (404, "Delete: Unable to find the ID {$id} for BasicRelationsManyMany");
+
+		$this->breadcrumbs[$id]=array ('basicrelations/manymanyview', 'id' => $id);
+		$this->breadcrumbs[]='Delete';
+
+		if (isset ($_POST['confirmed'])) {
+			$basic_relations_many_many_model->cascade(true);
+			if ($basic_relations_many_many_model->delete ())
+				$this->redirect (array ('basicrelations/manymanyindex'));
+		}
+
+		$this->render('delete', array(
+			'model' => $basic_relations_many_many_model,
+			'class_name' => 'BasicRelationsManyMany',
+		));
 	}
 
 }

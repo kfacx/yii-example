@@ -1,13 +1,17 @@
 # Complete Yii Example
 
-The goal of this project is to have a completely installed and running example site built using [Yii](http://www.yiiframework.com/). This example aims to cover as many aspects of Yii as possible. Some of the examples will cover:
+The goal of this project is to have a completely installed and running
+example site built using [Yii](http://www.yiiframework.com/). This example
+aims to cover as many aspects of Yii as possible. Some of the examples will
+cover:
 
 * DB Migrations
 * Unit Tests
 * Modules
 * Behaviours
 * JavaScript interaction with Yii's JavaScript objects
-* Provide framework for using extention and vendor add-ons development and testing.
+* Provide framework for using extention and vendor add-ons development and
+testing.
 * Use of PHP's Namespace
 
 
@@ -20,13 +24,15 @@ The goal of this project is to have a completely installed and running example s
 
 ## Recommended
 
-* A fast internet connection to download the Debian Vagrant box. (The file is 564MB)
+* A fast internet connection to download the Debian Vagrant box. (The file
+is 564MB)
 * A computer with at least 4GB RAM.
 
 
 ## Install
 
-__These install steps assume the host system is unix based (Linux, Mac OSX, *BSD, etc.).__
+__These install steps assume the host system is unix based (Linux, Mac OSX,
+*BSD, etc.).__
 
 You will need to add the following line to your local **/etc/hosts**
 
@@ -38,22 +44,24 @@ Then run the following commands:
     cd yii-example
     vagrant up
     chmod 0600 vagrant_insecure_key
-    cap deploy:setup
     cap deploy
 
-The **vagrant up** can take a long time to finish. If you have a slow internet connection it can take hours to download the base box.
+The **vagrant up** can take a long time to finish. If you have a slow
+internet connection it can take hours to download the base box.
 
 Once complete, the sites can be tested with the following URLs:
 
-    http://yii-example/
-    http://yii-demo-blog/
-    http://yii-demo-hangman/
-    http://yii-demo-helloworld/
-    http://yii-demo-phonebook/
+<http://yii-example/>  
+<http://yii-demo-blog/>  
+<http://yii-demo-hangman/>  
+<http://yii-demo-helloworld/>  
+<http://yii-demo-phonebook/>  
 
 ## Development:
 
-If you intend to use this project for personal development or to contribute to this project, seeing the results is easy and fast. Simply edit the files then run:
+If you intend to use this project for personal development or to contribute
+to this project, seeing the results is easy and fast. Simply edit the files
+then run:
 
     cap deploy
 

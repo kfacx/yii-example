@@ -32,7 +32,7 @@ namespace :deploy do
 		fi && phpunit ./unit/"
 	end
 
-	desc "Runs the unit tests after deployment."
+	desc "Runs the unit tests and generates coverage reports."
 	task :run_unit_tests_with_coverage do
 		run "if [ -e #{release_path} ]; then
 			cd #{release_path}/example/protected/tests;

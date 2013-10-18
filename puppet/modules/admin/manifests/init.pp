@@ -17,6 +17,6 @@ class admin {
 		"/etc/sudoers":
 			source => "puppet:///modules/admin/sudoers",
 			mode  => "0440",
-      require => Package["sudo"];
+			require => Package["sudo"];
 	}
 }

@@ -1,4 +1,8 @@
-<VirtualHost *:80>
+<VirtualHost *:443>
+	SSLEngine on
+	SSLCertificateKeyFile /etc/apache2/ssl/<%= @ssl_key_file %>
+	SSLCertificateFile /etc/apache2/ssl/<%= @ssl_crt_file %>
+
 	ServerAdmin <%= @email %>
 	ServerName <%= @server_name %>
 <% if @server_alias -%>
@@ -27,3 +31,5 @@
 	ServerSignature On
 
 </VirtualHost>
+
+SSLSessionCache	shmcb:${APACHE_RUN_DIR}/ssl_scache(512000)

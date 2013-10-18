@@ -47,7 +47,7 @@ class RelationsActiveRecord extends CActiveRecord {
 	protected $_insert_commands=array ();
 
 	// Emulate cascade on delete if the DB does not support it.
-	protected $cascade_on_delete=false;
+	protected $_cascade_on_delete=false;
 
 	/**
 	 * Used for mapping the many to many relations with a pivot class and/or a
@@ -159,7 +159,7 @@ class RelationsActiveRecord extends CActiveRecord {
 	 */
 	public function setPost_Attributes($POST) {
 		if (!isset ($POST[get_class ($this)]))
-			return;
+			throw new CException ('Unable to assign POST attributes because the base class attributes are missing!');
 		$this->attributes=$POST[get_class ($this)];
 		foreach ($this->relations() as $relation_name => $relation_settings) {
 			$relation_type=$relation_settings[0];
@@ -457,14 +457,14 @@ class RelationsActiveRecord extends CActiveRecord {
 	}
 
 	public function cascade ($cascade_setting) {
-		$this->cascade_on_delete=$cascade_setting;
+		$this->_cascade_on_delete=$cascade_setting;
 	}
 
 	/**
 	 * Emulates the cascade delete if the cascade variable is set to true.
 	 */
 	protected function beforeDelete () {
-		if (!$this->cascade_on_delete)
+		if (!$this->_cascade_on_delete)
 			return parent::beforeDelete();
 		// start transation.
 		// Itterate through the relations, issue deletes for Has One, Has

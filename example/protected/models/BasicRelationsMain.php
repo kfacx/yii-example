@@ -59,7 +59,8 @@ class BasicRelationsMain extends RelationsActiveRecord {
 	}
 
 	/**
-	 * Returns an array of the many to many relation and the name of the pivot class and/or
+	 * Returns an array mapping many to many relations to their pivot class
+	 * and magic list attribute. (Pivot class is not currently used).
 	 */
 	public function many_many_map () {
 		return array (

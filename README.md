@@ -5,14 +5,14 @@ example site built using [Yii](http://www.yiiframework.com/). This example
 aims to cover as many aspects of Yii as possible. Some of the examples will
 cover:
 
-* DB Migrations
-* Unit Tests
-* Modules
-* Behaviours
-* JavaScript interaction with Yii's JavaScript objects
-* Provide framework for using extention and vendor add-ons development and
+- [x] DB Migrations
+- [x] Unit Tests
+- [ ] Modules
+- [ ] Behaviours
+- [ ] JavaScript interaction with Yii's JavaScript objects
+- [ ] Provide framework for using extention and vendor add-ons development and
 testing.
-* Use of PHP's Namespace
+- [ ] Use of PHP's Namespace
 
 
 ## Requirements
